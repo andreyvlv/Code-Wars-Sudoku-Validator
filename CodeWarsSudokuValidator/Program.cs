@@ -10,6 +10,7 @@ namespace CodeWarsSudokuValidator
     {
         static void Main(string[] args)
         {
+            // Ступечатый массив, образующий судоку
             int[][] sudokuExample = new int[][]
             {
                 new int[] {5, 3, 4, 6, 7, 8, 9, 1, 2},
@@ -23,6 +24,7 @@ namespace CodeWarsSudokuValidator
                 new int[] {3, 4, 5, 2, 8, 6, 1, 7, 9},
             };
 
+            // Вывод судоку
             for (int i = 0; i < sudokuExample.Length; i++)
             {
                 for (int j = 0; j < sudokuExample[i].Length; j++)
@@ -32,24 +34,31 @@ namespace CodeWarsSudokuValidator
                 Console.WriteLine();
             }
 
+            // Проверка суммы ряда
             int[] line = new[] { 5, 3, 4, 6, 7, 8, 9, 1, 2 };
+            Console.WriteLine(line.Sum() + "\n");           
 
-            Console.WriteLine(line.Sum());
-            Console.WriteLine();
-            Console.WriteLine(SudokuValidator.HorizontalLinesValidator(sudokuExample));
-            Console.WriteLine();
+            // Валидация горизонтальных линий
+            Console.WriteLine(SudokuValidator.HorizontalLinesValidator(sudokuExample) + "\n"); 
+            
+            // Вывод перевернутой судоку
             VerticalLinesView(sudokuExample);
             Console.WriteLine();
-            Console.WriteLine(SudokuValidator.VerticalLinesValidator(sudokuExample));
-            Console.WriteLine();
+
+            // Валидация вертикальных линий
+            Console.WriteLine(SudokuValidator.VerticalLinesValidator(sudokuExample) + "\n");         
+            
+            // Вывод левого среднего 3 x 3 квадрата
             int[] firstArray = SudokuValidator.RangeDivisor(sudokuExample, 3, 3, 0, 3);
             foreach(var item in firstArray)
             {
                 Console.Write(item + " ");
             }
-            Console.WriteLine();
-            Console.WriteLine(SudokuValidator.ValidateSolution(sudokuExample));
-            Console.WriteLine();
+            Console.WriteLine("\n");
+
+            // Общая валидация судоку
+            Console.WriteLine($"Является ли судоку верной? Ответ: {SudokuValidator.ValidateSolution(sudokuExample)}\n"); 
+            
             Console.ReadLine();
         }
 
